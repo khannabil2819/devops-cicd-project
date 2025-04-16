@@ -1,9 +1,15 @@
 ---
-- hosts: localhost
+- name: Deploy app to Kubernetes
+  hosts: localhost
+  gather_facts: false
   tasks:
-    - name: Apply Deployment
-      shell: kubectl apply -f k8s/deployment.yaml
+    - name: Apply deployment YAML
+      command: kubectl apply -f k8s/deployment.yaml
+      args:
+        chdir: "{{ playbook_dir }}/.."
 
-    - name: Apply Service
-      shell: kubectl apply -f k8s/service.yaml
+    - name: Apply service YAML
+      command: kubectl apply -f k8s/service.yaml
+      args:
+        chdir: "{{ playbook_dir }}/.."
 
