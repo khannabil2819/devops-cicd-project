@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git 'https://github.com/khannabil2819/devops-cicd-project.git'
+        git branch: 'main', url: 'https://github.com/khannabil2819/devops-cicd-project.git'
       }
     }
 
@@ -34,6 +34,8 @@ pipeline {
     stage('Deploy to Kubernetes') {
       steps {
         sh 'ansible-playbook ansible/deploy_k8s.yml'
+
+        Fix: clone step using main branch
       }
     }
   }
